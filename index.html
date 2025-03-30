@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线音乐</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>在线音乐</h1>
+    </header>
+    
+    <main>
+        <section class="music-list">
+            <h2>热门歌曲</h2>
+            <ul id="song-list">
+                <!-- 歌曲列表将通过JavaScript动态加载 -->
+            </ul>
+        </section>
+        
+        <section class="player">
+            <div class="now-playing">
+                <h3>正在播放: <span id="current-song">无</span></h3>
+            </div>
+            <audio id="audio-player" controls></audio>
+            <div class="player-controls">
+                <button id="prev-btn">上一首</button>
+                <button id="play-btn">播放</button>
+                <button id="pause-btn">暂停</button>
+                <button id="next-btn">下一首</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2023 在线音乐</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
