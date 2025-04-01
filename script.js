@@ -18,7 +18,7 @@ const songs = [
     {
         title: "野路",
         artist: "许嵩",
-        file: "music/野路-许嵩.mp3"
+        file: "music/许嵩-野路.mp3"
     },
 
     // 添加更多歌曲...
