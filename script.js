@@ -2,20 +2,20 @@ const songs = [
   {
     title: "示例歌曲1",
     artist: "艺术家1",
-    file: "music/song1.mp3",
-    lrc: "music/song1.lrc"
-  }
-   {
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    lrc: "lyrics1.lrc"
+  },
+  {
     title: "示例歌曲2",
     artist: "艺术家2",
-    file: "music/song2.mp3",
-    lrc: "music/song1.lrc"
-  }
- {
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    lrc: "lyrics2.lrc"
+  },
+  {
     title: "示例歌曲3",
     artist: "艺术家3",
-    file: "music/song3.mp3",
-    lrc: "music/song1.lrc"
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    lrc: "lyrics3.lrc"
   }
 ];
 
@@ -63,21 +63,24 @@ function playPrev() {
 }
 
 function loadLRC(lrcPath) {
-  fetch(lrcPath)
-    .then(res => res.text())
-    .then(parseLRC)
-    .catch(err => {
-      console.error("无法加载歌词:", err);
-      lrcData = [];
-      lyricsList.innerHTML = '';
-    });
+  // 模拟歌词加载
+  const mockLyrics = [
+    "[00:00.00]这是第一行歌词",
+    "[00:05.00]这是第二行歌词",
+    "[00:10.00]这是第三行歌词",
+    "[00:15.00]这是第四行歌词",
+    "[00:20.00]这是第五行歌词",
+    "[00:25.00]这是第六行歌词"
+  ].join('\n');
+  
+  parseLRC(mockLyrics);
 }
 
 function parseLRC(lrcText) {
   lrcData = [];
   const lines = lrcText.split('\n');
   for (let line of lines) {
-    const match = line.match(/\[(\d{2}):(\d{2})(?:.(\d{2,3}))?\](.+)/);
+    const match = line.match(/\[(\d{2}):(\d{2})(?:\.(\d{2,3}))?\](.+)/);
     if (match) {
       const minutes = parseInt(match[1]);
       const seconds = parseInt(match[2]);
