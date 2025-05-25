@@ -1,76 +1,128 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
 header {
-    background-color: #1DB954;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+  background-color: #1DB954;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
 main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .music-list ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .music-list li {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
 }
 
 .music-list li:hover {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .player {
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: #f0f0f0;
-    border-radius: 8px;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }
 
 audio {
-    width: 100%;
-    margin: 1rem 0;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .player-controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 button {
-    padding: 0.5rem 1rem;
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #1ed760;
+  background-color: #1ed760;
 }
 
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: white;
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.lyrics {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.lyrics ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lyrics li {
+  padding: 0.2rem 0;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.lyrics .active {
+  color: #1DB954;
+  font-weight: bold;
+}
+
+.disc-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#rotating-disc {
+  width: 100px;
+  height: 100px;
+  transition: transform 0.5s linear;
+}
+
+.rotating {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
