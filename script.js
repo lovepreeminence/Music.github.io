@@ -8,7 +8,7 @@ const songs = [
    {
     title: "示例歌曲2",
     artist: "艺术家2",
-    file: "music/son2.mp3",
+    file: "music/song2.mp3",
     lrc: "music/song1.lrc"
   }
  {
