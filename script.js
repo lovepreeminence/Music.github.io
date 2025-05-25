@@ -82,6 +82,144 @@ function playSong(index) {
 }
 
 // 其他函数保持不变（playNext, playPrev, loadLRC, parseLRC等）...
+// 下一首
+function playNext() {
+  const nextIndex = (currentSongIndex + 1) % songs.length;
+  playSong(nextIndex);
+}
+
+// 上一首
+function playPrev() {
+  const prevIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  playSong(prevIndex);
+}
+
+// 加载LRC歌词文件
+function loadLRC(lrcPath) {
+  fetch(lrcPath)
+    .then(response => {
+      if (!response.ok) throw new Error("歌词加载失败");
+      return response.text();
+    })
+    .then(text => {
+      parseLRC(text);
+    })
+    .catch(error => {
+      console.error("加载歌词错误:", error);
+      lyricsList.innerHTML = '<li>歌词加载失败</li>';
+      lrcData = [];
+    });
+}
+
+// 解析LRC歌词
+function parseLRC(lrcText) {
+  lrcData = [];
+  const lines = lrcText.split('\n');
+  
+  lines.forEach(line => {
+    // 匹配时间标签和歌词内容
+    const timeTags = line.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/g);
+    const text = line.replace(/\[.*?\]/g, '').trim();
+    
+    if (timeTags && text) {
+      timeTags.forEach(tag => {
+        const match = tag.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/);
+        if (match) {
+          const minutes = parseInt(match[1]);
+          const seconds = parseInt(match[2]);
+          const milliseconds = parseInt(match[3].padEnd(3, '0'));
+          const time = minutes * 60 + seconds + milliseconds / 1000;
+          
+          lrcData.push({ time, text });
+        }
+      });
+    }
+  });
+  
+  // 按时间排序
+  lrcData.sort((a, b) => a.time - b.time);
+  
+  // 渲染歌词
+  renderLyrics();
+}
+
+// 渲染歌词到页面
+function renderLyrics() {
+  lyricsList.innerHTML = '';
+  
+  if (lrcData.length === 0) {
+    lyricsList.innerHTML = '<li>暂无歌词</li>';
+    return;
+  }
+  
+  lrcData.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.textContent = item.text;
+    li.dataset.time = item.time;
+    li.dataset.index = index;
+    lyricsList.appendChild(li);
+  });
+}
+
+// 同步歌词高亮
+function syncLyrics() {
+  const currentTime = audioPlayer.currentTime;
+  
+  // 找到当前应该高亮的歌词行
+  let highlightIndex = -1;
+  for (let i = 0; i < lrcData.length; i++) {
+    if (currentTime >= lrcData[i].time) {
+      highlightIndex = i;
+    } else {
+      break;
+    }
+  }
+  
+  // 如果找到需要高亮的行且与上次不同
+  if (highlightIndex !== -1 && highlightIndex !== lastHighlightedIndex) {
+    // 移除之前的高亮
+    const previousHighlighted = document.querySelector('.lyrics li.active');
+    if (previousHighlighted) {
+      previousHighlighted.classList.remove('active');
+    }
+    
+    // 添加新的高亮
+    const currentLi = document.querySelector(`.lyrics li[data-index="${highlightIndex}"]`);
+    if (currentLi) {
+      currentLi.classList.add('active');
+      
+      // 滚动到视图中心
+      currentLi.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+    
+    lastHighlightedIndex = highlightIndex;
+  }
+}
+
+// 事件监听
+playBtn.addEventListener('click', () => {
+  if (audioPlayer.src) {
+    audioPlayer.play();
+  } else {
+    playSong(0);
+  }
+});
+
+pauseBtn.addEventListener('click', () => audioPlayer.pause());
+nextBtn.addEventListener('click', playNext);
+prevBtn.addEventListener('click', playPrev);
+
+audioPlayer.addEventListener('ended', playNext);
+audioPlayer.addEventListener('timeupdate', syncLyrics);
+audioPlayer.addEventListener('play', () => {
+  rotatingDisc.classList.add('rotating');
+});
+audioPlayer.addEventListener('pause', () => {
+  rotatingDisc.classList.remove('rotating');
+});
 
 // 初始化
 initSongList();
