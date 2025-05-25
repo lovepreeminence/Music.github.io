@@ -6,16 +6,16 @@ const songs = [
     lrc: "music/song1.lrc"
   },
   {
-    title: "晴天",
-    artist: "周杰伦",
+    title: "山水之间",
+    artist: "许嵩",
     file: "music/song2.mp3",
-    lrc: "music/song1.lrc"
+    lrc: "https://www.kugeci.com/download/lrc/QEOXEkrv"
   },
   {
-    title: "七里香",
-    artist: "周杰伦",
+    title: "珠玉",
+    artist: "单依纯",
     file: "https://freetyst.nf.migu.cn/public/product9th/product47/2025/05/1511/2025%E5%B9%B405%E6%9C%8815%E6%97%A510%E7%82%B943%E5%88%86%E5%86%85%E5%AE%B9%E5%87%86%E5%85%A5%E6%AC%A2%E5%94%B1%E7%BD%91%E7%BB%9C1%E9%A6%96315212/%E6%A0%87%E6%B8%85%E9%AB%98%E6%B8%85/MP3_128_16_Stero/6953481HWN7114610.mp3?channelid=02&msisdn=5fd9f9e8-fa96-499b-bd83-c3dcf6f3a69f&Tim=1748172643052&Key=c6a0874a80690eba",
-    lrc: "lyrics/qilixiang.lrc"
+    lrc: "https://www.kugeci.com/download/lrc/jS4Kjysa"
   }
 ];
 
