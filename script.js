@@ -5,6 +5,18 @@ const songs = [
     file: "music/song1.mp3",
     lrc: "music/song1.lrc"
   }
+   {
+    title: "示例歌曲2",
+    artist: "艺术家2",
+    file: "music/son2.mp3",
+    lrc: "music/song1.lrc"
+  }
+ {
+    title: "示例歌曲3",
+    artist: "艺术家3",
+    file: "music/song3.mp3",
+    lrc: "music/song1.lrc"
+  }
 ];
 
 const songList = document.getElementById('song-list');
