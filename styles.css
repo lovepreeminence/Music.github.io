@@ -53,6 +53,7 @@ audio {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 button {
@@ -62,6 +63,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -109,8 +111,8 @@ footer {
 }
 
 #rotating-disc {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   transition: transform 0.5s linear;
 }
 
